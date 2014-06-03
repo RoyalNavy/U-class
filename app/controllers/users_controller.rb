@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+    before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
     before_action :correct_user,   only: [:edit, :update]
     before_action :admin_user,     only: :destroy
 
 
   def show
+    @projects = User.search(params[:search])
     @user =User.find(params[:id])
   end
   
@@ -13,8 +14,8 @@ class UsersController < ApplicationController
   end
   
   def index
+    @users = User.search(params[:search])
     @users = User.paginate(page: params[:page])
- 
   end
   
   def edit
@@ -73,5 +74,6 @@ class UsersController < ApplicationController
     end
 
 end
+
   
 
