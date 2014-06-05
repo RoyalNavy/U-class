@@ -1,4 +1,5 @@
 UClass::Application.routes.draw do
+  resources :password_resets
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   # No need to show or edit sessions.
